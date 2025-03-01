@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental and Real Estate Services</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(105deg, #154360 , #117964 );
+            color: white;
+            min-height: 100vh;
+        }
+        .card {
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+        }
+        .card img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .btn-primary {
+            background-color: #2575fc;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #6a11cb;
+        }
+        .upload-section {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .form-control {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+        }
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+        .navbar {
+            background: rgba(0, 0, 0, 0.7) !important;
+        }
+        .search-bar {
+            margin-left: auto;
+        }
+        .gallery-img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+            border-radius: 10px;
+        }
+        /* Navigation Menu Styles */
+        .nav-wrapper {
+            display: flex;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-item {
+            margin: 0 15px;
+            padding: 10px 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px #6a11cb, 0 0 20px #2575fc;
+            transform: scale(1.1);
+        }
+        /* Footer Styles */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+        footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <div class="nav-wrapper">
+        <a class="nav-item" href="#give-rent">Give for Rent</a>
+        <a class="nav-item" href="#book-rent">Book Rent</a>
+        <a class="nav-item" href="#land-sell">Land Sell</a>
+        <a class="nav-item" href="#land-purchase">Land Purchase</a>
+        <a class="nav-item" href="#house-sell">House Sell</a>
+        <a class="nav-item" href="#house-purchase">House Purchase</a>
+        <a class="nav-item" href="#help">Help</a>
+        <a class="nav-item" href="#our-services">Our Services</a>
+        <a class="nav-item" href="#photo-gallery">Photo Gallery</a>
+    </div>
+
+    <div class="container mt-5">
+        <!-- Book Rent Section -->
+        <section id="book-rent">
+            <h2>Book Rent</h2>
+            <div class="row" id="book-rent-list">
+                <!-- Houses will be dynamically added here -->
+            </div>
+        </section>
+
+        <!-- Give for Rent Section -->
+        <section id="give-rent" class="mt-5">
+            <h2>Give for Rent</h2>
+            <div class="upload-section">
+                <form id="rentForm">
+                    <div class="mb-3">
+                        <label for="houseLocation" class="form-label">House Location</label>
+                        <input type="text" class="form-control" id="houseLocation" placeholder="Enter house location" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rentPrice" class="form-label">Rent Price</label>
+                        <input type="number" class="form-control" id="rentPrice" placeholder="Enter rent price" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ownerPhone" class="form-label">Owner Phone Number</label>
+                        <input type="tel" class="form-control" id="ownerPhone" placeholder="Enter owner's phone number" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ownerEmail" class="form-label">Owner Email</label>
+                        <input type="email" class="form-control" id="ownerEmail" placeholder="Enter owner's email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="housePhotos" class="form-label">Upload 6 Photos of the House</label>
+                        <input type="file" class="form-control" id="housePhotos" multiple accept="image/*" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Land Sell Section -->
+        <section id="land-sell" class="mt-5">
+            <h2>Land Sell</h2>
+            <div class="upload-section">
+                <form id="landSellForm">
+                    <div class="mb-3">
+                        <label for="landLocation" class="form-label">Land Location</label>
+                        <input type="text" class="form-control" id="landLocation" placeholder="Enter land location" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="landPrice" class="form-label">Land Price</label>
+                        <input type="number" class="form-control" id="landPrice" placeholder="Enter land price" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="sellerPhone" class="form-label">Seller Phone Number</label>
+                        <input type="tel" class="form-control" id="sellerPhone" placeholder="Enter seller's phone number" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="sellerEmail" class="form-label">Seller Email</label>
+                        <input type="email" class="form-control" id="sellerEmail" placeholder="Enter seller's email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="landPhotos" class="form-label">Upload Photos of the Land</label>
+                        <input type="file" class="form-control" id="landPhotos" multiple accept="image/*" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Land Purchase Section -->
+        <section id="land-purchase" class="mt-5">
+            <h2>Land Purchase</h2>
+            <div class="row" id="land-purchase-list">
+                <!-- Lands will be dynamically added here -->
+            </div>
+        </section>
+
+        <!-- House Sell Section -->
+        <section id="house-sell" class="mt-5">
+            <h2>House Sell</h2>
+            <div class="upload-section">
+                <form id="houseSellForm">
+                    <div class="mb-3">
+                        <label for="sellHouseLocation" class="form-label">House Location</label>
+                        <input type="text" class="form-control" id="sellHouseLocation" placeholder="Enter house location" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="sellHousePrice" class="form-label">House Price</label>
+                        <input type="number" class="form-control" id="sellHousePrice" placeholder="Enter house price" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="sellerHousePhone" class="form-label">Seller Phone Number</label>
+                        <input type="tel" class="form-control" id="sellerHousePhone" placeholder="Enter seller's phone number" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="sellerHouseEmail" class="form-label">Seller Email</label>
+                        <input type="email" class="form-control" id="sellerHouseEmail" placeholder="Enter seller's email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="sellHousePhotos" class="form-label">Upload Photos of the House</label>
+                        <input type="file" class="form-control" id="sellHousePhotos" multiple accept="image/*" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- House Purchase Section -->
+        <section id="house-purchase" class="mt-5">
+            <h2>House Purchase</h2>
+            <div class="row" id="house-purchase-list">
+                <!-- Houses will be dynamically added here -->
+            </div>
+        </section>
+
+        <!-- Help Section -->
+        <section id="help" class="mt-5">
+            <h2>Help</h2>
+            <p>If you need assistance, please contact us at <strong>adhikariroman55@gmail.com</strong> or call <strong>+977-9860501422</strong>.</p>
+        </section>
+
+        <!-- Our Services Section -->
+        <section id="our-services" class="mt-5">
+            <h2>Our Services</h2>
+            <ul>
+                <li>House Rentals</li>
+                <li>Book Rentals</li>
+                <li>Land Selling and Purchasing</li>
+                <li>House Selling and Purchasing</li>
+                <li>Location-Based Search</li>
+                <li>24/7 Customer Support</li>
+            </ul>
+        </section>
+
+        <!-- Photo Gallery Section -->
+        <section id="photo-gallery" class="mt-5">
+            <h2>Photo Gallery</h2>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <img src="https://source.unsplash.com/300x200/?house,interior" class="gallery-img" alt="Gallery Image 1">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <img src="https://source.unsplash.com/300x200/?house,exterior" class="gallery-img" alt="Gallery Image 2">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <img src="https://source.unsplash.com/300x200/?apartment,balcony" class="gallery-img" alt="Gallery Image 3">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <h3>Contact Us</h3>
+        <p>Email: support@rentalservices.com</p>
+        <p>Phone: +977-9860501422</p>
+        <p>Address: Sankhu, Kathmandu</p>
+        <p>&copy; 2023 Rental and Real Estate Services. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Arrays to store data (simulated backend using localStorage)
+        let housesForRent = JSON.parse(localStorage.getItem('housesForRent')) || [];
+        let landsForSell = JSON.parse(localStorage.getItem('landsForSell')) || [];
+        let housesForSell = JSON.parse(localStorage.getItem('housesForSell')) || [];
+
+        // Handle form submission for giving rent
+        document.getElementById('rentForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const location = document.getElementById('houseLocation').value;
+            const price = document.getElementById('rentPrice').value;
+            const phone = document.getElementById('ownerPhone').value;
+            const email = document.getElementById('ownerEmail').value;
+            const photos = document.getElementById('housePhotos').files;
+
+            if (photos.length !== 6) {
+                alert('Please upload exactly 6 photos.');
+                return;
+            }
+
+            // Add house data to the array
+            const house = {
+                location,
+                price,
+                phone,
+                email,
+                photos: Array.from(photos).map(file => URL.createObjectURL(file))
+            };
+            housesForRent.push(house);
+
+            // Save to localStorage (simulated backend)
+            localStorage.setItem('housesForRent', JSON.stringify(housesForRent));
+
+            // Display the house in the Book Rent section
+            displayHouse(house, 'book-rent-list');
+
+            // Reset the form
+            e.target.reset();
+            alert('House details submitted successfully!');
+        });
+
+        // Handle form submission for land sell
+        document.getElementById('landSellForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const location = document.getElementById('landLocation').value;
+            const price = document.getElementById('landPrice').value;
+            const phone = document.getElementById('sellerPhone').value;
+            const email = document.getElementById('sellerEmail').value;
+            const photos = document.getElementById('landPhotos').files;
+
+            // Add land data to the array
+            const land = {
+                location,
+                price,
+                phone,
+                email,
+                photos: Array.from(photos).map(file => URL.createObjectURL(file))
+            };
+            landsForSell.push(land);
+
+            // Save to localStorage (simulated backend)
+            localStorage.setItem('landsForSell', JSON.stringify(landsForSell));
+
+            // Display the land in the Land Purchase section
+            displayLand(land, 'land-purchase-list');
+
+            // Reset the form
+            e.target.reset();
+            alert('Land details submitted successfully!');
+        });
+
+        // Handle form submission for house sell
+        document.getElementById('houseSellForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const location = document.getElementById('sellHouseLocation').value;
+            const price = document.getElementById('sellHousePrice').value;
+            const phone = document.getElementById('sellerHousePhone').value;
+            const email = document.getElementById('sellerHouseEmail').value;
+            const photos = document.getElementById('sellHousePhotos').files;
+
+            // Add house data to the array
+            const house = {
+                location,
+                price,
+                phone,
+                email,
+                photos: Array.from(photos).map(file => URL.createObjectURL(file))
+            };
+            housesForSell.push(house);
+
+            // Save to localStorage (simulated backend)
+            localStorage.setItem('housesForSell', JSON.stringify(housesForSell));
+
+            // Display the house in the House Purchase section
+            displayHouse(house, 'house-purchase-list');
+
+            // Reset the form
+            e.target.reset();
+            alert('House details submitted successfully!');
+        });
+
+        // Function to display a house in the Book Rent section
+        function displayHouse(house, sectionId) {
+            const list = document.getElementById(sectionId);
+            const col = document.createElement('div');
+            col.className = 'col-md-4';
+
+            const card = document.createElement('div');
+            card.className = 'card';
+
+            const carousel = document.createElement('div');
+            carousel.className = 'carousel slide';
+            carousel.setAttribute('data-bs-ride', 'carousel');
+            carousel.innerHTML = `
+                <div class="carousel-inner">
+                    ${house.photos.map((photo, index) => `
+                        <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                            <img src="${photo}" class="d-block w-100" alt="House Photo">
+                        </div>
+                    `).join('')}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            `;
+
+            const cardBody = document.createElement('div');
+            cardBody.className = 'card-body';
+            cardBody.innerHTML = `
+                <h5 class="card-title">${house.location}</h5>
+                <p class="card-text">$${house.price}</p>
+                <p class="card-text">Contact: ${house.phone}</p>
+                <p class="card-text">Email: ${house.email}</p>
+                <button class="btn btn-primary purchase-now">Purchase Now</button>
+            `;
+
+            card.appendChild(carousel);
+            card.appendChild(cardBody);
+            col.appendChild(card);
+            list.appendChild(col);
+
+            // Add event listener to the "Purchase Now" button
+            cardBody.querySelector('.purchase-now').addEventListener('click', () => {
+                if (confirm('Are you sure you want to purchase this property?')) {
+                    alert('Property purchased successfully! A message has been sent to the seller.');
+                    // Simulate sending a message to the seller's phone number
+                    console.log(`Message sent to seller's phone (${house.phone}): Someone purchased your property at ${house.location}`);
+                    // Simulate sending an email to the seller
+                    console.log(`Email sent to seller (${house.email}): Someone purchased your property at ${house.location}`);
+                }
+            });
+        }
+
+        // Function to display a land in the Land Purchase section
+        function displayLand(land, sectionId) {
+            const list = document.getElementById(sectionId);
+            const col = document.createElement('div');
+            col.className = 'col-md-4';
+
+            const card = document.createElement('div');
+            card.className = 'card';
+
+            const carousel = document.createElement('div');
+            carousel.className = 'carousel slide';
+            carousel.setAttribute('data-bs-ride', 'carousel');
+            carousel.innerHTML = `
+                <div class="carousel-inner">
+                    ${land.photos.map((photo, index) => `
+                        <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                            <img src="${photo}" class="d-block w-100" alt="Land Photo">
+                        </div>
+                    `).join('')}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            `;
+
+            const cardBody = document.createElement('div');
+            cardBody.className = 'card-body';
+            cardBody.innerHTML = `
+                <h5 class="card-title">${land.location}</h5>
+                <p class="card-text">$${land.price}</p>
+                <p class="card-text">Contact: ${land.phone}</p>
+                <p class="card-text">Email: ${land.email}</p>
+                <button class="btn btn-primary purchase-now">Purchase Now</button>
+            `;
+
+            card.appendChild(carousel);
+            card.appendChild(cardBody);
+            col.appendChild(card);
+            list.appendChild(col);
+
+            // Add event listener to the "Purchase Now" button
+            cardBody.querySelector('.purchase-now').addEventListener('click', () => {
+                if (confirm('Are you sure you want to purchase this land?')) {
+                    alert('Land purchased successfully! A message has been sent to the seller.');
+                    // Simulate sending a message to the seller's phone number
+                    console.log(`Message sent to seller's phone (${land.phone}): Someone purchased your land at ${land.location}`);
+                    // Simulate sending an email to the seller
+                    console.log(`Email sent to seller (${land.email}): Someone purchased your land at ${land.location}`);
+                }
+            });
+        }
+
+        // Handle location search
+        document.getElementById('searchForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const searchLocation = document.getElementById('searchLocation').value.toLowerCase();
+            const filteredHouses = housesForRent.filter(house => house.location.toLowerCase().includes(searchLocation));
+            const filteredLands = landsForSell.filter(land => land.location.toLowerCase().includes(searchLocation));
+            const filteredHousesForSell = housesForSell.filter(house => house.location.toLowerCase().includes(searchLocation));
+
+            // Clear the current display
+            document.getElementById('book-rent-list').innerHTML = '';
+            document.getElementById('land-purchase-list').innerHTML = '';
+            document.getElementById('house-purchase-list').innerHTML = '';
+
+            // Display filtered results
+            filteredHouses.forEach(house => displayHouse(house, 'book-rent-list'));
+            filteredLands.forEach(land => displayLand(land, 'land-purchase-list'));
+            filteredHousesForSell.forEach(house => displayHouse(house, 'house-purchase-list'));
+        });
+
+        // Load data from localStorage on page load
+        window.addEventListener('load', () => {
+            housesForRent.forEach(house => displayHouse(house, 'book-rent-list'));
+            landsForSell.forEach(land => displayLand(land, 'land-purchase-list'));
+            housesForSell.forEach(house => displayHouse(house, 'house-purchase-list'));
+        });
+    </script>
+</body>
+</html>
